@@ -16,8 +16,8 @@ public class RabbitMqConfig {
 
         factory.setConnectionFactory(connectionFactory);
 
-        factory.setPrefetchCount(4);
-        factory.setConsumersPerQueue(2);
+        factory.setPrefetchCount(1);
+        factory.setConsumersPerQueue(1);
         factory.setGlobalQos(true);
 
         return factory;
