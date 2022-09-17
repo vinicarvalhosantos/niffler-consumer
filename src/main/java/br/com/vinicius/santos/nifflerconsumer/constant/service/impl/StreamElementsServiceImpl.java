@@ -1,8 +1,8 @@
-package br.com.vinicius.santos.nifflerconsumer.service.impl;
+package br.com.vinicius.santos.nifflerconsumer.constant.service.impl;
 
+import br.com.vinicius.santos.nifflerconsumer.constant.service.StreamElementsService;
 import br.com.vinicius.santos.nifflerconsumer.model.StreamElementsModel;
 import br.com.vinicius.santos.nifflerconsumer.request.StreamElementsRequests;
-import br.com.vinicius.santos.nifflerconsumer.service.StreamElementsService;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
 import retrofit2.Retrofit;

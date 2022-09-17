@@ -1,11 +1,24 @@
 package br.com.vinicius.santos.nifflerconsumer.model.entity;
 
 import com.sun.istack.NotNull;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.EntityListeners;
+
+import java.util.Date;
 
 @Entity
 @Table(name = "message_points")
+@EntityListeners(AuditingEntityListener.class)
 public class UserMessageEntity {
 
     @Id
@@ -26,6 +39,9 @@ public class UserMessageEntity {
     @Column(nullable = false)
     private boolean isSpam;
 
+    @CreatedDate
+    private Date createdAt;
+
     public UserMessageEntity(int messageLength, Double pointsToBeAdded, UserEntity user_sent, boolean isSpam) {
         this.messageLength = messageLength;
         this.pointsToBeAdded = pointsToBeAdded;
@@ -35,45 +51,5 @@ public class UserMessageEntity {
 
     public UserMessageEntity() {
 
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public int getMessageLength() {
-        return messageLength;
-    }
-
-    public void setMessageLength(int messageLength) {
-        this.messageLength = messageLength;
-    }
-
-    public Double getPointsToBeAdded() {
-        return pointsToBeAdded;
-    }
-
-    public void setPointsToBeAdded(Double pointsToBeAdded) {
-        this.pointsToBeAdded = pointsToBeAdded;
-    }
-
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UserEntity user_sent) {
-        this.user = user_sent;
-    }
-
-    public boolean isSpam() {
-        return isSpam;
-    }
-
-    public void setSpam(boolean spam) {
-        isSpam = spam;
     }
 }

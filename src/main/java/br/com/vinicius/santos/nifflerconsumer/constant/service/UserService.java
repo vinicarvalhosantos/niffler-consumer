@@ -1,4 +1,4 @@
-package br.com.vinicius.santos.nifflerconsumer.service;
+package br.com.vinicius.santos.nifflerconsumer.constant.service;
 
 import br.com.vinicius.santos.nifflerconsumer.model.UserModel;
 import br.com.vinicius.santos.nifflerconsumer.model.entity.UserEntity;

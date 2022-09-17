@@ -1,13 +1,15 @@
-package br.com.vinicius.santos.nifflerconsumer.service.impl;
+package br.com.vinicius.santos.nifflerconsumer.constant.service.impl;
 
 import br.com.vinicius.santos.nifflerconsumer.constant.PointsConstants;
+import br.com.vinicius.santos.nifflerconsumer.constant.service.LastUserMessageService;
+import br.com.vinicius.santos.nifflerconsumer.constant.service.UserService;
 import br.com.vinicius.santos.nifflerconsumer.model.EmoteModel;
+import br.com.vinicius.santos.nifflerconsumer.model.LastUserMessageModel;
 import br.com.vinicius.santos.nifflerconsumer.model.UserModel;
 import br.com.vinicius.santos.nifflerconsumer.model.entity.UserEntity;
 import br.com.vinicius.santos.nifflerconsumer.model.entity.UserMessageEntity;
 import br.com.vinicius.santos.nifflerconsumer.repository.UserMessageRepository;
-import br.com.vinicius.santos.nifflerconsumer.service.UserMessageService;
-import br.com.vinicius.santos.nifflerconsumer.service.UserService;
+import br.com.vinicius.santos.nifflerconsumer.constant.service.UserMessageService;
 import br.com.vinicius.santos.nifflerconsumer.util.EmoteUtils;
 import br.com.vinicius.santos.nifflerlib.models.dto.UserMessageDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,19 +27,29 @@ public class UserMessageServiceImpl implements UserMessageService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private LastUserMessageService lastUserMessageService;
+
     @Override
     public void analyseMessage(UserMessageDto userMessageDto) {
 
         Long userId = userMessageDto.getUserId();
         String username = userMessageDto.getUsername();
         String displayName = userMessageDto.getDisplayName();
+        String message = userMessageDto.getMessage();
         int messageLength = this.getMessageLength(userMessageDto);
         double pointsToAdd = 0.0;
 
         UserEntity userEntity = this.userService.fetchUser(new UserModel(userId, username, displayName));
 
-        if (isSpam(userMessageDto.getMessage())) {
+        LastUserMessageModel lastUserMessageModel = this.lastUserMessageService.compareUserMessages(userEntity, message);
+
+        double similarity = lastUserMessageModel.getSimilarityPercentage();
+
+        if (isSpam(message) || similarity >= 0.7) {
             this.saveUserMessage(messageLength, pointsToAdd, userEntity, true);
+            lastUserMessageModel.getLastUserMessageEntity().setLastMessage(message);
+            this.lastUserMessageService.fetchLastUserMessage(lastUserMessageModel.getLastUserMessageEntity());
             return;
         }
 
@@ -46,6 +58,10 @@ public class UserMessageServiceImpl implements UserMessageService {
         userEntity.setPointsToAdd(userEntity.getPointsToAdd() + pointsToAdd);
 
         this.saveUserMessage(messageLength, pointsToAdd, userEntity, false);
+
+        lastUserMessageModel.getLastUserMessageEntity().setLastMessage(message);
+
+        this.lastUserMessageService.fetchLastUserMessage(lastUserMessageModel.getLastUserMessageEntity());
 
         this.userService.updateUser(userEntity);
     }
