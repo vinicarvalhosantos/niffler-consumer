@@ -1,6 +1,6 @@
 package br.com.vinicius.santos.nifflerconsumer.controller;
 
-import br.com.vinicius.santos.nifflerconsumer.repository.model.entity.UserEntity;
+import br.com.vinicius.santos.nifflerconsumer.model.entity.UserEntity;
 import br.com.vinicius.santos.nifflerconsumer.service.UserMessageService;
 import br.com.vinicius.santos.nifflerconsumer.service.UserService;
 import br.com.vinicius.santos.nifflerlib.constants.RabbitMqConstants;

@@ -1,6 +1,6 @@
 package br.com.vinicius.santos.nifflerconsumer.request;
 
-import br.com.vinicius.santos.nifflerconsumer.repository.model.StreamElementsModel;
+import br.com.vinicius.santos.nifflerconsumer.model.StreamElementsModel;
 import retrofit2.Call;
 import retrofit2.http.Header;
 import retrofit2.http.PUT;

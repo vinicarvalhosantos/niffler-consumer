@@ -1,10 +1,10 @@
 package br.com.vinicius.santos.nifflerconsumer.service.impl;
 
 import br.com.vinicius.santos.nifflerconsumer.constant.PointsConstants;
-import br.com.vinicius.santos.nifflerconsumer.repository.model.EmoteModel;
-import br.com.vinicius.santos.nifflerconsumer.repository.model.UserModel;
-import br.com.vinicius.santos.nifflerconsumer.repository.model.entity.UserEntity;
-import br.com.vinicius.santos.nifflerconsumer.repository.model.entity.UserMessageEntity;
+import br.com.vinicius.santos.nifflerconsumer.model.EmoteModel;
+import br.com.vinicius.santos.nifflerconsumer.model.UserModel;
+import br.com.vinicius.santos.nifflerconsumer.model.entity.UserEntity;
+import br.com.vinicius.santos.nifflerconsumer.model.entity.UserMessageEntity;
 import br.com.vinicius.santos.nifflerconsumer.repository.UserMessageRepository;
 import br.com.vinicius.santos.nifflerconsumer.service.UserMessageService;
 import br.com.vinicius.santos.nifflerconsumer.service.UserService;

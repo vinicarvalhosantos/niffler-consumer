@@ -1,7 +1,7 @@
 package br.com.vinicius.santos.nifflerconsumer.util;
 
 
-import br.com.vinicius.santos.nifflerconsumer.repository.model.EmoteModel;
+import br.com.vinicius.santos.nifflerconsumer.model.EmoteModel;
 
 import java.util.ArrayList;
 import java.util.List;

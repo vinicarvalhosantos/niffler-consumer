@@ -1,4 +1,4 @@
-package br.com.vinicius.santos.nifflerconsumer.repository.model.entity;
+package br.com.vinicius.santos.nifflerconsumer.model.entity;
 
 import org.hibernate.annotations.ColumnDefault;
 

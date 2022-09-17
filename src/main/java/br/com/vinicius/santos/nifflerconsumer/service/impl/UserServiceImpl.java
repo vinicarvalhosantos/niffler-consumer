@@ -1,8 +1,8 @@
 package br.com.vinicius.santos.nifflerconsumer.service.impl;
 
-import br.com.vinicius.santos.nifflerconsumer.repository.model.StreamElementsModel;
-import br.com.vinicius.santos.nifflerconsumer.repository.model.UserModel;
-import br.com.vinicius.santos.nifflerconsumer.repository.model.entity.UserEntity;
+import br.com.vinicius.santos.nifflerconsumer.model.StreamElementsModel;
+import br.com.vinicius.santos.nifflerconsumer.model.UserModel;
+import br.com.vinicius.santos.nifflerconsumer.model.entity.UserEntity;
 import br.com.vinicius.santos.nifflerconsumer.repository.UserRepository;
 import br.com.vinicius.santos.nifflerconsumer.service.StreamElementsService;
 import br.com.vinicius.santos.nifflerconsumer.service.UserService;

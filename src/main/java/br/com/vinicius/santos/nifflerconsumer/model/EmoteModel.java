@@ -1,4 +1,4 @@
-package br.com.vinicius.santos.nifflerconsumer.repository.model;
+package br.com.vinicius.santos.nifflerconsumer.model;
 
 import java.util.List;
 

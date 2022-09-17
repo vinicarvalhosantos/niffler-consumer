@@ -1,7 +1,7 @@
 package br.com.vinicius.santos.nifflerconsumer.service;
 
-import br.com.vinicius.santos.nifflerconsumer.repository.model.UserModel;
-import br.com.vinicius.santos.nifflerconsumer.repository.model.entity.UserEntity;
+import br.com.vinicius.santos.nifflerconsumer.model.UserModel;
+import br.com.vinicius.santos.nifflerconsumer.model.entity.UserEntity;
 
 import java.io.IOException;
 
