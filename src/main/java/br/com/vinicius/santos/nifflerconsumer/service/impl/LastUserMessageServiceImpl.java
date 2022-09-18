@@ -1,10 +1,10 @@
-package br.com.vinicius.santos.nifflerconsumer.constant.service.impl;
+package br.com.vinicius.santos.nifflerconsumer.service.impl;
 
 import br.com.vinicius.santos.nifflerconsumer.model.LastUserMessageModel;
 import br.com.vinicius.santos.nifflerconsumer.model.entity.LastUserMessageEntity;
 import br.com.vinicius.santos.nifflerconsumer.model.entity.UserEntity;
 import br.com.vinicius.santos.nifflerconsumer.repository.LastUserMessageRepository;
-import br.com.vinicius.santos.nifflerconsumer.constant.service.LastUserMessageService;
+import br.com.vinicius.santos.nifflerconsumer.service.LastUserMessageService;
 import br.com.vinicius.santos.nifflerconsumer.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

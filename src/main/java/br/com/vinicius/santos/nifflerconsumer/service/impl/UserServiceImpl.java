@@ -1,7 +1,7 @@
-package br.com.vinicius.santos.nifflerconsumer.constant.service.impl;
+package br.com.vinicius.santos.nifflerconsumer.service.impl;
 
-import br.com.vinicius.santos.nifflerconsumer.constant.service.StreamElementsService;
-import br.com.vinicius.santos.nifflerconsumer.constant.service.UserService;
+import br.com.vinicius.santos.nifflerconsumer.service.StreamElementsService;
+import br.com.vinicius.santos.nifflerconsumer.service.UserService;
 import br.com.vinicius.santos.nifflerconsumer.model.StreamElementsModel;
 import br.com.vinicius.santos.nifflerconsumer.model.UserModel;
 import br.com.vinicius.santos.nifflerconsumer.model.entity.UserEntity;

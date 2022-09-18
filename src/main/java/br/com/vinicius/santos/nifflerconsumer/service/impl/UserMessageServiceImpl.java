@@ -1,15 +1,15 @@
-package br.com.vinicius.santos.nifflerconsumer.constant.service.impl;
+package br.com.vinicius.santos.nifflerconsumer.service.impl;
 
 import br.com.vinicius.santos.nifflerconsumer.constant.PointsConstants;
-import br.com.vinicius.santos.nifflerconsumer.constant.service.LastUserMessageService;
-import br.com.vinicius.santos.nifflerconsumer.constant.service.UserService;
+import br.com.vinicius.santos.nifflerconsumer.service.LastUserMessageService;
+import br.com.vinicius.santos.nifflerconsumer.service.UserService;
 import br.com.vinicius.santos.nifflerconsumer.model.EmoteModel;
 import br.com.vinicius.santos.nifflerconsumer.model.LastUserMessageModel;
 import br.com.vinicius.santos.nifflerconsumer.model.UserModel;
 import br.com.vinicius.santos.nifflerconsumer.model.entity.UserEntity;
 import br.com.vinicius.santos.nifflerconsumer.model.entity.UserMessageEntity;
 import br.com.vinicius.santos.nifflerconsumer.repository.UserMessageRepository;
-import br.com.vinicius.santos.nifflerconsumer.constant.service.UserMessageService;
+import br.com.vinicius.santos.nifflerconsumer.service.UserMessageService;
 import br.com.vinicius.santos.nifflerconsumer.util.EmoteUtils;
 import br.com.vinicius.santos.nifflerlib.models.dto.UserMessageDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,18 +67,18 @@ public class UserMessageServiceImpl implements UserMessageService {
     }
 
     private int getMessageLength(UserMessageDto userMessageDto) {
-        if (userMessageDto.isEmoteOnly()) {
-            return 0;
-        }
-
         int emotesInMessage = 0;
 
         if (!userMessageDto.getEmotes().isEmpty()) {
 
             EmoteModel emoteModel = EmoteUtils.extractWrittenEmotes(userMessageDto.getEmotes(), userMessageDto.getMessage());
 
-            emoteModel.getWrittenEmotes().forEach(writtenEmote -> userMessageDto.setMessage(userMessageDto.getMessage()
-                    .replaceAll(writtenEmote, "").replaceAll("\\s+", "")));
+            if (userMessageDto.isEmoteOnly()) {
+                return emoteModel.getEmotesNumber();
+            }
+
+            emoteModel.getWrittenEmotes().forEach(writtenEmote -> userMessageDto.setMessage(
+                    userMessageDto.getMessage().replaceAll(writtenEmote, "").replaceAll("\\s+", "")));
 
             emotesInMessage = emoteModel.getEmotesNumber();
         }

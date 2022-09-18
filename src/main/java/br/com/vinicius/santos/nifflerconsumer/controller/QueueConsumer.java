@@ -1,8 +1,8 @@
 package br.com.vinicius.santos.nifflerconsumer.controller;
 
 import br.com.vinicius.santos.nifflerconsumer.model.entity.UserEntity;
-import br.com.vinicius.santos.nifflerconsumer.constant.service.UserMessageService;
-import br.com.vinicius.santos.nifflerconsumer.constant.service.UserService;
+import br.com.vinicius.santos.nifflerconsumer.service.UserMessageService;
+import br.com.vinicius.santos.nifflerconsumer.service.UserService;
 import br.com.vinicius.santos.nifflerlib.constants.RabbitMqConstants;
 import br.com.vinicius.santos.nifflerlib.models.dto.UserMessageDto;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
