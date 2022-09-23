@@ -3,20 +3,23 @@ package br.com.vinicius.santos.nifflerconsumer.service.impl;
 import br.com.vinicius.santos.nifflerconsumer.constant.PointsConstants;
 import br.com.vinicius.santos.nifflerconsumer.service.LastUserMessageService;
 import br.com.vinicius.santos.nifflerconsumer.service.UserService;
-import br.com.vinicius.santos.nifflerconsumer.model.EmoteModel;
-import br.com.vinicius.santos.nifflerconsumer.model.LastUserMessageModel;
-import br.com.vinicius.santos.nifflerconsumer.model.UserModel;
-import br.com.vinicius.santos.nifflerconsumer.model.entity.UserEntity;
-import br.com.vinicius.santos.nifflerconsumer.model.entity.UserMessageEntity;
-import br.com.vinicius.santos.nifflerconsumer.repository.UserMessageRepository;
+import br.com.vinicius.santos.nifflerconsumer.util.StringUtils;
+import br.com.vinicius.santos.nifflerlib.model.EmoteModel;
+import br.com.vinicius.santos.nifflerlib.model.LastUserMessageModel;
+import br.com.vinicius.santos.nifflerlib.model.UserModel;
+import br.com.vinicius.santos.nifflerlib.model.entity.UserEntity;
+import br.com.vinicius.santos.nifflerlib.model.entity.UserMessageEntity;
+import br.com.vinicius.santos.nifflerlib.repository.UserMessageRepository;
 import br.com.vinicius.santos.nifflerconsumer.service.UserMessageService;
 import br.com.vinicius.santos.nifflerconsumer.util.EmoteUtils;
-import br.com.vinicius.santos.nifflerlib.models.dto.UserMessageDto;
+import br.com.vinicius.santos.nifflerlib.model.dto.UserMessageDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class UserMessageServiceImpl implements UserMessageService {
@@ -32,6 +35,8 @@ public class UserMessageServiceImpl implements UserMessageService {
 
     @Override
     public void analyseMessage(UserMessageDto userMessageDto) {
+
+        userMessageDto.setMessage(StringUtils.removeAllEmojisExcept(userMessageDto.getMessage()));
 
         Long userId = userMessageDto.getUserId();
         String username = userMessageDto.getUsername();
@@ -78,7 +83,7 @@ public class UserMessageServiceImpl implements UserMessageService {
             }
 
             emoteModel.getWrittenEmotes().forEach(writtenEmote -> userMessageDto.setMessage(
-                    userMessageDto.getMessage().replaceAll(writtenEmote, "").replaceAll("\\s+", "")));
+                    userMessageDto.getMessage().replaceAll(writtenEmote.replaceAll("\\)", "").replaceAll("\\(", ""), "").replaceAll("\\s+", "")));
 
             emotesInMessage = emoteModel.getEmotesNumber();
         }
@@ -137,8 +142,26 @@ public class UserMessageServiceImpl implements UserMessageService {
     }
 
     private boolean isSpam(String message) {
-        String pattern = "((.)\\2+)+";
+        Pattern pattern = Pattern.compile("((.[^k, K])\\2)");
+        Matcher matcher = pattern.matcher(message);
+        int matches = 0;
 
-        return message.matches(pattern);
+        while (matcher.find()) {
+            matches++;
+        }
+
+        if(matches > 1){
+            return true;
+        }
+
+        pattern = Pattern.compile("((.[k, K])\\2){4}");
+        matcher = pattern.matcher(message);
+        matches = 0;
+
+        while (matcher.find()) {
+            matches++;
+        }
+
+        return matches > 1;
     }
 }

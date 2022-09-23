@@ -1,8 +1,8 @@
 package br.com.vinicius.santos.nifflerconsumer.service;
 
-import br.com.vinicius.santos.nifflerconsumer.model.LastUserMessageModel;
-import br.com.vinicius.santos.nifflerconsumer.model.entity.LastUserMessageEntity;
-import br.com.vinicius.santos.nifflerconsumer.model.entity.UserEntity;
+import br.com.vinicius.santos.nifflerlib.model.LastUserMessageModel;
+import br.com.vinicius.santos.nifflerlib.model.entity.LastUserMessageEntity;
+import br.com.vinicius.santos.nifflerlib.model.entity.UserEntity;
 
 public interface LastUserMessageService {
 

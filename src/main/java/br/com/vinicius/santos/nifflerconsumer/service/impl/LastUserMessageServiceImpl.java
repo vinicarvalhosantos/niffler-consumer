@@ -1,9 +1,9 @@
 package br.com.vinicius.santos.nifflerconsumer.service.impl;
 
-import br.com.vinicius.santos.nifflerconsumer.model.LastUserMessageModel;
-import br.com.vinicius.santos.nifflerconsumer.model.entity.LastUserMessageEntity;
-import br.com.vinicius.santos.nifflerconsumer.model.entity.UserEntity;
-import br.com.vinicius.santos.nifflerconsumer.repository.LastUserMessageRepository;
+import br.com.vinicius.santos.nifflerlib.model.LastUserMessageModel;
+import br.com.vinicius.santos.nifflerlib.model.entity.LastUserMessageEntity;
+import br.com.vinicius.santos.nifflerlib.model.entity.UserEntity;
+import br.com.vinicius.santos.nifflerlib.repository.LastUserMessageRepository;
 import br.com.vinicius.santos.nifflerconsumer.service.LastUserMessageService;
 import br.com.vinicius.santos.nifflerconsumer.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +32,7 @@ public class LastUserMessageServiceImpl implements LastUserMessageService {
 
     @Override
     public LastUserMessageEntity fetchLastUserMessage(LastUserMessageEntity lastUserMessageEntity) {
+        lastUserMessageEntity.setLastMessage(StringUtils.removeAllEmojis(lastUserMessageEntity.getLastMessage()));
         return this.lastUserMessageRepository.save(lastUserMessageEntity);
     }
 }

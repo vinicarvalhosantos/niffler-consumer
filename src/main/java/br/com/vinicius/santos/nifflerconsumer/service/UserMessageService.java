@@ -1,6 +1,6 @@
 package br.com.vinicius.santos.nifflerconsumer.service;
 
-import br.com.vinicius.santos.nifflerlib.models.dto.UserMessageDto;
+import br.com.vinicius.santos.nifflerlib.model.dto.UserMessageDto;
 
 public interface UserMessageService {
 

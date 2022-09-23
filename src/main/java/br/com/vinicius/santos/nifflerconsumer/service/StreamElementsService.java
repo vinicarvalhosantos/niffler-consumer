@@ -1,7 +1,7 @@
 package br.com.vinicius.santos.nifflerconsumer.service;
 
 
-import br.com.vinicius.santos.nifflerconsumer.model.StreamElementsModel;
+import br.com.vinicius.santos.nifflerlib.model.StreamElementsModel;
 
 import java.io.IOException;
 
