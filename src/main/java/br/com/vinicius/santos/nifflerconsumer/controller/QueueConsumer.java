@@ -26,9 +26,9 @@ public class QueueConsumer {
         this.userMessageService.analyseMessage(userMessageDto);
     }
 
-    /*@RabbitListener(queues = {RabbitMqConstants.ADD_USER_POINTS})
+    @RabbitListener(queues = {RabbitMqConstants.ADD_USER_POINTS})
     public void receiveToAddUserPoints(@Payload UserEntity userEntity) throws IOException {
         this.userService.addUserPoints(userEntity);
-    }*/
+    }
 
 }

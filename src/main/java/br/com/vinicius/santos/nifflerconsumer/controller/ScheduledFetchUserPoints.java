@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-/*@Configuration
-@EnableScheduling*/
+@Configuration
+@EnableScheduling
 public class ScheduledFetchUserPoints {
 
     @Autowired
@@ -20,7 +20,7 @@ public class ScheduledFetchUserPoints {
     @Autowired
     RabbitTemplate rabbitTemplate;
 
-    //@Scheduled(fixedDelay = 900000)// 15 minutes
+    @Scheduled(fixedDelay = 900000)// 15 minutes
     public void fetchUserPoints() {
 
         RabbitAdmin rabbitAdmin = new RabbitAdmin(rabbitTemplate);

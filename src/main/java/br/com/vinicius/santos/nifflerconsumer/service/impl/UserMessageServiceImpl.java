@@ -35,6 +35,9 @@ public class UserMessageServiceImpl implements UserMessageService {
 
     @Override
     public void analyseMessage(UserMessageDto userMessageDto) {
+        if (userMessageDto.getUsername() == null) {
+            return;
+        }
 
         userMessageDto.setMessage(StringUtils.removeAllEmojisExcept(userMessageDto.getMessage()));
 
@@ -150,7 +153,7 @@ public class UserMessageServiceImpl implements UserMessageService {
             matches++;
         }
 
-        if(matches > 1){
+        if (matches > 1) {
             return true;
         }
 
